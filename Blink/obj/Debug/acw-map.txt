@@ -1,0 +1,8 @@
+Blink.ImageActivity, Blink;md58769c621713bad0093180fdced18c7dc.ImageActivity
+Blink.ImageActivity, Blink, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md58769c621713bad0093180fdced18c7dc.ImageActivity
+Blink.ImageActivity;md58769c621713bad0093180fdced18c7dc.ImageActivity
+blink.ImageActivity;md58769c621713bad0093180fdced18c7dc.ImageActivity
+Blink.MainActivity, Blink;md58769c621713bad0093180fdced18c7dc.MainActivity
+Blink.MainActivity, Blink, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md58769c621713bad0093180fdced18c7dc.MainActivity
+Blink.MainActivity;md58769c621713bad0093180fdced18c7dc.MainActivity
+blink.MainActivity;md58769c621713bad0093180fdced18c7dc.MainActivity
