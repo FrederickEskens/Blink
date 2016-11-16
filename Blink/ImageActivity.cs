@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Threading.Tasks;
 
 using Android.App;
+using Android.Graphics;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using Android.Graphics;
-using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Blink
 {
@@ -15,9 +15,12 @@ namespace Blink
     public class ImageActivity : Activity
     {
         List<Bitmap> images;
+
         int imageCount = 0;
         int index = 0;
-        ImageView iv;
+
+        ImageView imageView;
+
         Button showImageButton;
         Button nextImageButton;
 
@@ -32,14 +35,14 @@ namespace Blink
                 InitializeImages();
             }           
 
-            iv = FindViewById<ImageView>(Resource.Id.image);
-            iv.SetImageBitmap(images[index]);
+            imageView = FindViewById<ImageView>(Resource.Id.image);
+            imageView.SetImageBitmap(images[index]);
 
             showImageButton = FindViewById<Button>(Resource.Id.show_button);
             nextImageButton = FindViewById<Button>(Resource.Id.next_button);
 
             nextImageButton.Visibility = ViewStates.Gone;
-            iv.Visibility = ViewStates.Invisible;
+            imageView.Visibility = ViewStates.Invisible;
 
             showImageButton.Click += ShowImage;
             nextImageButton.Click += NextImage;
@@ -48,32 +51,32 @@ namespace Blink
         private void ShowImage(object sender, EventArgs e)
         {
             showImageButton.Visibility = ViewStates.Gone;
-            FlashImage();
             nextImageButton.Visibility = ViewStates.Visible;
+            FlashImage();            
         }
 
         private void FlashImage()
         {
-            iv.Visibility = ViewStates.Visible;
+            imageView.Visibility = ViewStates.Visible;
             HideImageWithDelay(50);
+        }
+
+        private void NextImage(object sender, EventArgs e)
+        {
+            if (index < imageCount - 1)
+            {
+                index++;
+                imageView.SetImageBitmap(images[index]);
+                showImageButton.Visibility = ViewStates.Visible;
+                nextImageButton.Visibility = ViewStates.Gone;
+            }
         }
 
         async void HideImageWithDelay(int milliseconds)
         {
             await Task.Delay(TimeSpan.FromMilliseconds(milliseconds));
-            iv.Visibility = ViewStates.Invisible;
-        }
-
-        private void NextImage(object sender, EventArgs e)
-        {
-            if (index < imageCount-1)
-            {
-                index++;
-                iv.SetImageBitmap(images[index]);
-                showImageButton.Visibility = ViewStates.Visible;
-                nextImageButton.Visibility = ViewStates.Gone;
-            }
-        }
+            imageView.Visibility = ViewStates.Invisible;
+        }       
 
         private Bitmap CropImage(Bitmap source)
         {

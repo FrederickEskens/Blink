@@ -1,7 +1,7 @@
 ﻿using Android.App;
-using Android.Widget;
-using Android.OS;
 using Android.Content;
+using Android.OS;
+using Android.Widget;
 
 namespace Blink
 {
@@ -26,4 +26,3 @@ namespace Blink
         }
     }
 }
-
